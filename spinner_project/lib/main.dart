@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,6 +59,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  StreamController<int> controller = StreamController<int>();
+
 
   void _incrementCounter() {
     setState(() {
@@ -112,6 +117,14 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            FortuneWheel(
+            selected: controller.stream,
+            items: const [
+              FortuneItem(child: Text('Han Solo')),
+              FortuneItem(child: Text('Yoda')),
+              FortuneItem(child: Text('Obi-Wan Kenobi')),
+            ],
+          ),
           ],
         ),
       ),
